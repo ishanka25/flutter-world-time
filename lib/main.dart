@@ -5,7 +5,7 @@ import 'package:project_worldtime/pages/loading.dart';
 
 void main() {
   runApp(MaterialApp(
-    initialRoute: '/home',
+    initialRoute: '/',
     routes: {
       // context describes the place that we are currently in the tree
       '/': (context) => Loading(),
