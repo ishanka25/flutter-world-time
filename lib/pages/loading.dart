@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart';
-import 'dart:convert';
+import 'package:project_worldtime/services/world_time.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -8,32 +7,16 @@ class Loading extends StatefulWidget {
 }
 
 class _LoadingState extends State<Loading> {
-  void getTime() async {
-    Response response =
-        await get('http://worldtimeapi.org/api/timezone/Asia/Colombo');
-    Map data = jsonDecode(response.body);
-    print(data);
-
-    String datetime = data['datetime'];
-    String offset = data['utc_offset'];
-
-    print(datetime);
-
-    // Creating a DateTime Object
-    DateTime now = DateTime.parse(datetime);
-    print(now);
-
-    // Local date time
-    now = now.add(Duration(
-        hours: int.parse(offset.substring(1, 3)),
-        minutes: int.parse(offset.substring(4, 6))));
-    print(now);
+  void setupWorldTime() async {
+    WorldTime worldTime =
+        new WorldTime(location: 'Sri Lanka', flag: '', url: 'Asia/Colombo');
+    await worldTime.getTime();
   }
 
   @override
   void initState() {
     super.initState();
-    getTime();
+    setupWorldTime();
   }
 
   @override
