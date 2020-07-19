@@ -13,8 +13,12 @@ class _LoadingState extends State<Loading> {
     WorldTime worldTime =
         new WorldTime(location: 'Sri Lanka', flag: '', url: 'Asia/Colombo');
     await worldTime.getTime();
-    setState(() {
-      time = worldTime.time;
+    // pushReplacementNamed will replace the loading screen
+    // to pass the data to another route use - arguments
+    Navigator.pushReplacementNamed(context, '/home', arguments: {
+      'location': worldTime.location,
+      'flag': worldTime.flag,
+      'time': worldTime.time
     });
   }
 
@@ -29,7 +33,7 @@ class _LoadingState extends State<Loading> {
     return Scaffold(
       body: Padding(
         padding: EdgeInsets.all(50),
-        child: Text(time),
+        child: Text('Loading...'),
       ),
     );
   }
