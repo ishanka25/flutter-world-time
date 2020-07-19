@@ -7,6 +7,7 @@ class WorldTime {
   String time;
   String flag; // img
   String url;
+  bool isDay;
 
   WorldTime({this.location, this.flag, this.url});
 
@@ -32,6 +33,7 @@ class WorldTime {
           minutes: int.parse(offset.substring(4, 6))));
       print(now);
 
+      isDay = now.hour > 6 && now.hour < 18 ? true : false;
       time = DateFormat.jm().format(now);
     } catch (e) {
       print(e);
