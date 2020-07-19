@@ -11,8 +11,8 @@ class _LoadingState extends State<Loading> {
   String time = "Loading";
 
   void setupWorldTime() async {
-    WorldTime worldTime =
-        new WorldTime(location: 'Sri Lanka', flag: '', url: 'Asia/Colombo');
+    WorldTime worldTime = new WorldTime(
+        location: 'Sri Lanka', flag: 'sl.png', url: 'Asia/Colombo');
     await worldTime.getTime();
     // pushReplacementNamed will replace the loading screen
     // to pass the data to another route use - arguments
